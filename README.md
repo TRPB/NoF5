@@ -22,7 +22,7 @@ Usage
 require_once 'nof5.phar';
 ```
 
-2) Save a file on the server and your browser will be updated as long as the page you're viewing has a <head> tag!
+2) Save a file on the server and your browser will be updated as long as the page you're viewing has a &lt;head&gt; tag!
 
 
 Features
