@@ -7,8 +7,8 @@ class MonitoredFile {
 
 	public function __construct($baseDir, $fileName) {
 		$this->baseDir = $baseDir;
-		$this->fileName = $fileName;
-		$this->lastMTime = filemtime($this->baseDir . '/' . $fileName);
+		$this->fileName = ltrim($fileName, '/');
+		$this->lastMTime = is_file($this->baseDir . '/' . $this->fileName) ? filemtime($this->baseDir . '/' . $this->fileName) : 0;
 	}
 
 	public function isModified() {
