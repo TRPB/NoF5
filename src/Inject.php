@@ -12,13 +12,7 @@ class Inject {
 			return str_replace('</head>', '<script id="__nof5" src="' . $this->scriptUrl . '?nof5=getScript"></script>', $buffer);
 		});
 	}
-	
-	
-	public function debug() {
-		session_start();
-		print_r($_SESSION);
-		die;
-	}
+
 	public function getScript() {
 		header('Content-type: text/javascript');
 		echo file_get_contents('./nof5.js');

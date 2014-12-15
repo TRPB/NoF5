@@ -22,14 +22,12 @@ function ajaxRequest(url) {
 	nextRequest();
 }
 
-ajaxRequest(window.location.href + '?nof5=registerFiles&nof5id=' + requestId);
-
 function registerFile(name) {
 	ajaxRequest(window.location.href + '?nof5=registerFile&nof5arg[]=' + encodeURIComponent(name) + '&nof5id=' + requestId);
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-	var base = document.getElementsByTagName('base').length > 0 ? document.getElementsByTagName('base')[0].href : window.location.protocol + '//' + window.locations.host + window.location.pathname; 
+	var base = document.getElementsByTagName('base').length > 0 ? document.getElementsByTagName('base')[0].href : window.location.protocol + '//' + window.location.host + window.location.pathname; 
 
 	var links = document.getElementsByTagName('link');	
 	for (var i = 0; i < links.length; i++) {
@@ -66,6 +64,7 @@ evtSource.onmessage = function(e) {
 	var files = JSON.parse(e.data);
 		
 	for (var file in files) {
+		if (files[file] == '') continue;
 		if (files[file].indexOf('.css') > -1) {
 			var links = document.getElementsByTagName('link');
 			for (var i = 0; i < links.length; i++) {		
@@ -119,6 +118,9 @@ evtSource.onmessage = function(e) {
 			}
 
 		}
-		else window.location.reload();
+		else {
+			//console.log(files);
+			window.location.reload();
+		}
 	}
 };

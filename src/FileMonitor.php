@@ -7,12 +7,14 @@ class FileMonitor {
 	private $baseDir;
 	private $requestUri;
 	private $time;
+	private $session;
 	
-	public function __construct($scriptName, $get, $post, $baseDir, $requestUri) {
+	public function __construct($scriptName, $get, $post, $session, $baseDir, $requestUri) {
 		$this->scriptName = $scriptName;
 		$this->get = $get;
 		$this->post = $post;
 		$this->baseDir = $baseDir;
+		$this->session = $session;
 		$this->requestUri = $requestUri;
 		$this->time = time();
 		$this->registerFiles();
@@ -36,13 +38,12 @@ class FileMonitor {
 	}
 	
 	
-	private function registerFiles() {
+	public function registerFiles() {
 		//Register .htaccess if it exists
 		if (file_exists($this->baseDir . '/.htaccess')) $this->monitorFile($this->baseDir, '.htaccess');
-	
-		exec('strace -f -t -e trace=open php ' . $this->scriptName . ' nooutput "' . http_build_query($this->get). '" "' . http_build_query($this->post) . '" "' . $this->requestUri . '"   2>&1', $output);
-		header('content-type: text/plain');
 
+		exec('strace -f -t -e trace=open php ' . $this->scriptName . ' nooutput "' . http_build_query($this->get). '" "' . http_build_query($this->post) . '" "' . $this->requestUri . '" "' . http_build_query($this->session) . '"  2>&1', $output);
+		header('content-type: text/plain');
 		foreach ($output as $line) {
 			$firstQuote = strpos($line, '"');
 			if ($firstQuote !== false) {
@@ -52,6 +53,7 @@ class FileMonitor {
 				if (isset($info['extension']) && in_array(strtolower($info['extension']), $this->extensionsToWatch)) $this->monitorFile($info['dirname'], $info['basename']);
 			}
 		}
+		
 	}
 	
 	public function monitor() {
@@ -64,4 +66,5 @@ class FileMonitor {
 	public function getTime() {
 		return $this->time;
 	}
+
 }
