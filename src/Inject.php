@@ -9,7 +9,7 @@ class Inject {
 		
 	public function addScript() {
 		ob_start(function($buffer) {
-			return str_replace('</head>', '<script id="__nof5" src="' . $this->scriptUrl . '?nof5=getScript"></script>', $buffer);
+			return str_replace('</head>', '<script id="__nof5" src="' . $this->scriptUrl . '?nof5=getScript"></script></head>', $buffer);
 		});
 	}
 
