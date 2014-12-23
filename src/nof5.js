@@ -59,6 +59,7 @@ window.setTimeout = function(func, int) {
 }
 
 
+
 var evtSource = new EventSource(window.location.href + '?nof5=monitor&nof5id=' + requestId);
 evtSource.onmessage = function(e) {
 	var files = JSON.parse(e.data);
