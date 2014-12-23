@@ -52,8 +52,8 @@ window.setInterval = function(func, int) {
 }
 
 window.oldSetTimeout = window.setTimeout;
-window.setInterval = function(func, int) {
-	var id = window.oldSetInterval(func, int);
+window.setTimeout = function(func, int) {
+	var id = window.oldsetTimeout(func, int);
 	timeouts.push(id);
 	return id;
 }
