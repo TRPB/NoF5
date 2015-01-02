@@ -53,12 +53,10 @@ window.setInterval = function(func, int) {
 
 window.oldSetTimeout = window.setTimeout;
 window.setTimeout = function(func, int) {
-	var id = window.oldsetTimeout(func, int);
+	var id = window.oldSetTimeout(func, int);
 	timeouts.push(id);
 	return id;
 }
-
-
 
 var evtSource = new EventSource(window.location.href + '?nof5=monitor&nof5id=' + requestId);
 evtSource.onmessage = function(e) {
