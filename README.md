@@ -25,6 +25,15 @@ require_once 'nof5.phar';
 2) Save a file on the server and your browser will be updated as long as the page you're viewing has a &lt;head&gt; tag!
 
 
+Alternative usage
+-----------------
+
+If you don't want to edit your script directly for version control reasons, development/live servers, you can add this to .htaccess on your development machine:
+
+```
+php_value auto_prepend_file "nof5.php"
+```
+
 Features
 --------
 
