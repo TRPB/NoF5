@@ -27,9 +27,9 @@ function registerFile(name) {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-	var base = document.getElementsByTagName('base').length > 0 ? document.getElementsByTagName('base')[0].href : window.location.protocol + '//' + window.location.host + window.location.pathname; 
+	var base = document.getElementsByTagName('base').length > 0 ? document.getElementsByTagName('base')[0].href : window.location.origin + '/';
 
-	var links = document.getElementsByTagName('link');	
+	var links = document.getElementsByTagName('link');
 	for (var i = 0; i < links.length; i++) {
 		if (links[i].rel == 'stylesheet') registerFile(links[i].href.replace(base, ''));		  
 	}	

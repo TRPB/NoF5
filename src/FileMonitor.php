@@ -57,7 +57,6 @@ class FileMonitor {
 	}
 	
 	public function monitor() {
-		$this->time = time();
 		ini_set('display_errors', 'off');
 		header("Content-Type: text/event-stream\n\n");
 		return 'data: ' . json_encode($this->getChangedFiles()) . "\n\n";
