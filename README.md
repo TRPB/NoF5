@@ -3,6 +3,8 @@ NoF5
 
 No longer wear out your F5 key! This simple PHP script will let you avoid refreshing the browser each time you change a file!
 
+It supports live, in place reloading of CSS and JavaScript files as well as reloading the entire page when a server-side processed file such as a .php or .tpl file is modified.
+
 Pre-requisites
 --------------
 
