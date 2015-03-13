@@ -31,7 +31,7 @@ Alternative usage
 If you don't want to edit your script directly for version control reasons, development/live servers, you can add this to .htaccess on your development machine:
 
 ```
-php_value auto_prepend_file "nof5.php"
+php_value auto_prepend_file "nof5.phar"
 ```
 
 Features
